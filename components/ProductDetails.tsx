@@ -8,7 +8,7 @@ import Link from "next/link";
 
 // Define the Product component which takes in the id of the product and some functions to display notifications
 const ProductDetails = ({product, quantity, setQuantity, purchase} : any) => {
-    const [visible, setVisible] = useState(false);
+    const [isModalVisible, setModalVisible] = useState(false);
 
     // Increase quantity of product to purchase
     const increaseQuantity = () => {
@@ -27,7 +27,7 @@ const ProductDetails = ({product, quantity, setQuantity, purchase} : any) => {
     <div className={"flex flex-row w-full justify-between"}>
         <button
           type="button"
-          onClick={() => setVisible(true)}
+          onClick={() => setModalVisible(true)}
           className="absolute bottom-0 bg-black h-[4rem] rounded-b-lg flex items-center w-full justify-center opacity-0 group-hover:opacity-100 transition"
           data-bs-toggle="modal"
           data-bs-target="#exampleModalCenter"
@@ -41,7 +41,7 @@ const ProductDetails = ({product, quantity, setQuantity, purchase} : any) => {
         </button>
 
         {/* Modal */}
-        {visible && (
+        {isModalVisible && (
           <div
             className="fixed z-40 overflow-y-auto top-0 w-full h-full left-0"
             id="modal"
@@ -60,7 +60,7 @@ const ProductDetails = ({product, quantity, setQuantity, purchase} : any) => {
                 aria-labelledby="modal-headline"
             >
                 <div className="p-2">
-                    <div onClick={() => setVisible(false)} className="w-full flex justify-center lg:justify-end">
+                    <div onClick={() => setModalVisible(false)} className="w-full flex justify-center lg:justify-end">
                         <svg className="w-10 h-10 cursor-pointer text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m13 7-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                         </svg>
@@ -111,7 +111,7 @@ const ProductDetails = ({product, quantity, setQuantity, purchase} : any) => {
                                     <span className="absolute inset-0 w-full h-full duration-300 delay-300 bg-gray-900 opacity-0 group-hover:opacity-100"></span>
                                     <span className="relative transition-colors duration-300 delay-200 group-hover:text-white ease">Purchase</span>
                                 </button> :                                 
-                                    <p className="w-full lg:w-[30rem] px-5 py-3 overflow-hidden font-medium text-white bg-pink-300 border border-gray-100 rounded-lg shadow-inner ">Out of stock</p>
+                                    <p className="w-full lg:w-[30rem] px-5 py-3 overflow-hidden font-medium text-white bg-red-300 border border-gray-100 rounded-lg shadow-inner ">Out of stock</p>
                                 }
                             </div>
                         </div>
